@@ -1,6 +1,10 @@
 .vscode
 Account
 *.log
-obj/
+ex00/obj
+ex01/obj
+ex02/obj
 *.o
 *.d
+ex01/phonebook
+ex00/megaphone
