@@ -1,24 +1,41 @@
 NAME = Account
 
-FILES =	Account.cpp\
-		Account.hpp\
+CC = c++
+
+
+SRC_DIR := .
+OBJ_DIR = ./obj
+INC_DIR := .
+DEP_DIR := $(OBJ_DIR)/.deps
+
+
+vpath %.cpp $(SRC_DIR)
+vpath %.hpp $(INC_DIR)
+vpath %.d $(DEP_DIR)
+
+
+SRC =	Account.cpp\
 		tests.cpp
 
-OBJ =	$(patsubst %.cpp, obj/%.o,$(FILES))
-CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98
+OBJ =	$(addprefix $(OBJ_DIR)/, $(SRC:%.cpp=%.o))
 
+DEP:= $(OBJ:.o=.d)
+DEPFLAGS = -MMD -MP
+FLAGS = -Wall -Wextra -Werror  -std=c++98
+INCLUDES = -I$(INC_DIR)
 all: $(NAME)
 
-$(NAME):$(OBJ)
-	@$(CC) $(FLAGS)$(OBJ) -o $(NAME)
+-include $(DEP)
 
-obj/%.o: %.cpp
+$(NAME):$(OBJ)
+	@$(CC) $^ -o $@
+
+$(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) -c $< -o $@ 
+	@$(CC) $(FLAGS) $(DEPFLAGS) -I$(INCLUDES) -c $< -o $@ 
 
 clean:
-	@rm -rf obj
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -rf $(NAME)

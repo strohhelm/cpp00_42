@@ -1,1 +1,6 @@
 .vscode
+Account
+*.log
+obj/
+*.o
+*.d
