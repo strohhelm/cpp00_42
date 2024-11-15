@@ -11,11 +11,11 @@ FLAGS = -Wall -Wextra -Werror -std=c++11
 all: $(NAME)
 
 $(NAME):$(OBJ)
-	@$(CC) $(OBJ) -o $(NAME) -g
+	@$(CC) $(OBJ) -o $(NAME)
 
 obj/%.o: src/%.cpp
 	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) -c $< -o $@ -g
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	@rm -rf obj
