@@ -1,28 +1,27 @@
 NAME = phonebook
 
-SRC =	Contact.cpp \
-		PhoneBook.cpp \
-		main.cpp
+FILES =	src/Contact.cpp\
+		src/PhoneBook.cpp\
+		src/main.cpp
 
-OBJ =	Contact.o \
-		PhoneBook.o \
-		main.o
-
+OBJ =	$(patsubst src/%.cpp, obj/%.o,$(FILES))
 CC = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++11
 
 all: $(NAME)
 
 $(NAME):$(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	@$(CC) $(OBJ) -o $(NAME) -g
 
-%.o: %.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+obj/%.o: src/%.cpp
+	@mkdir -p $(dir $@)
+	@$(CC) $(FLAGS) -c $< -o $@ -g
+
 clean:
-	rm -rf $(OBJ)
+	@rm -rf obj
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 
