@@ -6,7 +6,7 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 15:18:23 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/10/22 15:27:34 by pstrohal         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:30:16 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void PhoneBook::add(void)
 	{
 		display_message(i);
 		std::getline(std::cin, input);
+		check_eof();
 		std::cout << T <<std::endl;
-		// if (input == "exit")
 		if ((i == PHONE && !std::all_of(input.begin(), input.end(), ::isdigit)) || input == "")
 		{
 			std::cout << T << MAGENTA << "Well that cant be right, try again.\n" << RESET <<std::endl;
@@ -73,7 +73,7 @@ int test_valid(std::string input, int index)
 {
 	int in;
 
-	if (input.length() == 1)
+	if (input.length() == 1 && isdigit(input[0]))
 	{
 		in = std::stoi(input);
 		if (in > 0 && in < index + 1)
@@ -126,6 +126,7 @@ int PhoneBook::search(void)
 		print(GREEN, "Type its number to see, or 'b'to go back:\n", 2);
 		std::cout << T << GREEN << ">" << RESET;
 		std::getline(std::cin, input);
+		check_eof();
 		if (input == "b")
 			break ;
 		else if((in = test_valid(input, init)))

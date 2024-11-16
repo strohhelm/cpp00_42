@@ -6,7 +6,7 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:21:24 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/09/11 12:38:11 by pstrohal         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:25:58 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@
 
 void print(std::string colour, std::string text, int delay);
 void leave(void);
+void check_eof(void);
 
 #endif
