@@ -6,7 +6,7 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:54:28 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/09/11 12:16:40 by pstrohal         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:09:36 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 #include "main.hpp"
+#include <iostream>
+#include <string>
 
 enum attribute {
 	FIRST,
