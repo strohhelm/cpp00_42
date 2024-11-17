@@ -6,12 +6,15 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:02:58 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/11/16 16:49:33 by pstrohal         ###   ########.fr       */
+/*   Updated: 2024/11/17 14:41:08 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PhoneBook.hpp"
 
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//		gerneral utilities
+//
 void print(std::string colour, std::string text, int delay)
 {
 	std::cout<<T<<colour;
@@ -23,11 +26,40 @@ void print(std::string colour, std::string text, int delay)
 	std::cout<<RESET;
 }
 
+//----------------------------------------------------------------------------//
+
+bool	check_digit(std::string s)
+{
+	for (char c: s)
+	{
+		if (!isdigit(c))
+			return false;
+	}
+	return true;
+}
+
+//----------------------------------------------------------------------------//
+
 void leave(void)
 {
 	print(MAGENTA, "Goodbye my my love! I will cease to exist now, blessed to have served you! Keep being so beautiful!\n", 20);
 			exit(0);
 }
+
+//----------------------------------------------------------------------------//
+
+void	check_eof(void)
+{
+	if(!std::cin)
+	{
+		if(std::cin.eof())
+			exit_failure();
+		else
+			print(MAGENTA, "HUH?? SOmething wierd just happened.. hmm maybe it was just me\n", 35);
+	}
+}
+
+//----------------------------------------------------------------------------//
 
 void	exit_failure(void)
 {
@@ -51,18 +83,9 @@ void	exit_failure(void)
 	print(RESET,"\n\nbzzt...\n\n", 90);
 	exit(1);
 }
-
-void	check_eof(void)
-{
-	if(!std::cin)
-	{
-		if(std::cin.eof())
-			exit_failure();
-		else
-			print(MAGENTA, "HUH?? SOmething wierd just happened.. hmm maybe it was just me\n", 35);
-	}
-}
-
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//		signal handling;
+//
 void	signalHandler(int signal)
 {
 	static int times = 0;
@@ -71,7 +94,7 @@ void	signalHandler(int signal)
 		if (times < 3)
 		{
 			print(MAGENTA, "\n		NOOO, please please let me finish first dear!!", 10);
-			std::cout<<std::endl<<T<<T;
+			// std::cout<<std::endl<<T<<T;
 			times++;
 		}
 		else
@@ -79,6 +102,9 @@ void	signalHandler(int signal)
 	}
 	return ;
 }
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//		MAIN FUNCTION
+//
 int main(void)
 {
 	PhoneBook book;

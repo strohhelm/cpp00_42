@@ -6,12 +6,15 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:22:38 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/09/11 12:45:09 by pstrohal         ###   ########.fr       */
+/*   Updated: 2024/11/17 14:39:44 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Contact.hpp"
 
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=//
+//	CONSTRUCTOR, DESTRUCTOR
+//
 Contact::Contact() {
 	firstname = "";
 	lastname = "";
@@ -22,6 +25,9 @@ Contact::Contact() {
 
 Contact::~Contact(){}
 
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=//
+//		display_for_table utilities
+//
 void	display_correctly(std::string content, int db)
 {
 	int len;
@@ -45,6 +51,9 @@ void	display_correctly(std::string content, int db)
 		
 	std::cout << "|";
 }
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=//
+//		Contact class functions 
+//
 void Contact::display_for_table(int index)
 {
 	std::string ind;
@@ -74,6 +83,7 @@ void Contact::display_for_table(int index)
 	std::cout<<std::endl;
 }
 
+//----------------------------------------------------------------------------//
 
 void Contact::display_contact(void)
 {
@@ -83,6 +93,9 @@ void Contact::display_contact(void)
 	std::cout << T << GREEN << "Phone number: " << RESET << phone << std::endl;
 	std::cout << T << GREEN << "Darkest secret: " << RESET << secret <<std::endl<<std::endl;
 }
+
+//----------------------------------------------------------------------------//
+
 void Contact::set_var(int x, std::string value)
 {
 	switch (x)
@@ -106,3 +119,5 @@ void Contact::set_var(int x, std::string value)
 		break;
 	}
 }
+
+//----------------------------------------------------------------------------//

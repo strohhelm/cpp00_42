@@ -6,12 +6,14 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 15:18:23 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/11/16 16:30:16 by pstrohal         ###   ########.fr       */
+/*   Updated: 2024/11/17 14:57:57 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PhoneBook.hpp"
-
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//	CONSTRUCTOR, DESTRUCTOR
+//
 PhoneBook::PhoneBook()
 {
 	index = 0;
@@ -19,6 +21,9 @@ PhoneBook::PhoneBook()
 }
 PhoneBook::~PhoneBook(){}
 
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//		add_function utilities
+//
 void display_message(int i)
 {
 	switch (i)
@@ -41,6 +46,44 @@ void display_message(int i)
 	}
 }
 
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//		search_function utilities
+//
+int test_valid(std::string input, int index)
+{
+	int in;
+
+	if (input.length() == 1 && isdigit(input[0]))
+	{
+		in = std::stoi(input);
+		if (in > 0 && in < index + 1)
+			return (in);
+	}
+	return (0);
+}
+//----------------------------------------------------------------------------//
+
+void line(char c)
+{
+	int	i = 43;
+		std::cout << T<<"|";
+	for (int j = 0; j < i; j++)
+		std::cout<<c;
+	std::cout <<"|\n";
+}
+//----------------------------------------------------------------------------//
+
+void print_table_head(void)
+{
+	std::cout << T << "|     "<< YELLOW <<"index"<<RESET<<"|";
+	std::cout << YELLOW << "first name" << RESET << "| ";
+	std::cout << YELLOW << "last name" << RESET << "| ";
+	std::cout << YELLOW << "nick name" << RESET << "|\n";
+}
+
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//		PhoneBook Class functions
+//
 void PhoneBook::add(void)
 {
 	int i = 0;
@@ -53,7 +96,7 @@ void PhoneBook::add(void)
 		std::getline(std::cin, input);
 		check_eof();
 		std::cout << T <<std::endl;
-		if ((i == PHONE && !std::all_of(input.begin(), input.end(), ::isdigit)) || input == "")
+		if (((i == PHONE && !check_digit(input)) || input == ""))
 		{
 			std::cout << T << MAGENTA << "Well that cant be right, try again.\n" << RESET <<std::endl;
 			continue;
@@ -69,35 +112,7 @@ void PhoneBook::add(void)
 	return ;
 }
 
-int test_valid(std::string input, int index)
-{
-	int in;
-
-	if (input.length() == 1 && isdigit(input[0]))
-	{
-		in = std::stoi(input);
-		if (in > 0 && in < index + 1)
-			return (in);
-	}
-	return (0);
-}
-
-void line(char c)
-{
-	int	i = 43;
-		std::cout << T<<"|";
-	for (int j = 0; j < i; j++)
-		std::cout<<c;
-	std::cout <<"|\n";
-} 
-void print_table_head(void)
-{
-	std::cout << T << "|     "<< YELLOW <<"index"<<RESET<<"|";
-	std::cout << YELLOW << "first name" << RESET << "| ";
-	std::cout << YELLOW << "last name" << RESET << "| ";
-	std::cout << YELLOW << "nick name" << RESET << "|" << std::endl;
-}
-
+//----------------------------------------------------------------------------//
 
 int PhoneBook::search(void)
 {

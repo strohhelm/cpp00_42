@@ -6,7 +6,7 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:21:24 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/11/16 16:25:58 by pstrohal         ###   ########.fr       */
+/*   Updated: 2024/11/17 14:25:11 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define MAIN_HPP
 #include <iostream>
 #include <string>
-#include <algorithm>
 #include <chrono>
 #include <thread>
 
@@ -31,5 +30,7 @@
 void print(std::string colour, std::string text, int delay);
 void leave(void);
 void check_eof(void);
+void exit_failure(void);
+bool check_digit(std::string input);
 
 #endif
