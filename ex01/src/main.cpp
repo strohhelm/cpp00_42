@@ -6,7 +6,7 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:02:58 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/11/17 14:41:08 by pstrohal         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:19:31 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	check_digit(std::string s)
 
 void leave(void)
 {
-	print(MAGENTA, "Goodbye my my love! I will cease to exist now, blessed to have served you! Keep being so beautiful!\n", 20);
+	print(MAGENTA, "Goodbye my my love! I will cease to exist now, blessed to have served you! Keep being so beautiful!\n\n", 20);
 			exit(0);
 }
 
@@ -93,8 +93,8 @@ void	signalHandler(int signal)
 	{
 		if (times < 3)
 		{
-			print(MAGENTA, "\n		NOOO, please please let me finish first dear!!", 10);
-			// std::cout<<std::endl<<T<<T;
+			print(MAGENTA, "\n		NOOO, please please let me finish first dear!!\n", 10);
+			std::cout<<std::endl<<T;
 			times++;
 		}
 		else
@@ -120,19 +120,19 @@ int main(void)
 		std::cout<<T<<GREEN<<">"<<RESET;
 		std::getline(std::cin, input);
 		check_eof();
-		if (input == "add")
+		if (input == "ADD")
 			book.add();
-		else if (input == "search")
+		else if (input == "SEARCH")
 		{
 			if(book.search())
 				book.add();
 		}	
-		else if (input == "exit")
+		else if (input == "EXIT")
 			leave();
 		else
 		{
 			print(RED, "Sorry dear, i can not help you with this naughty stuff.\n", 5);
-			print( RED, "Unfortunately you can only 'add' 'search' or 'exit' me...for now ;)\n", 5);
+			print( RED, "Unfortunately you can only 'ADD' 'SEARCH' or 'EXIT' me...for now ;)\n", 5);
 		}
 		print(GREEN, "Okay now,  what do you wish to do?\n", 2);
 	}

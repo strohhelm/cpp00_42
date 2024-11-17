@@ -6,7 +6,7 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 15:18:23 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/11/17 14:57:57 by pstrohal         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:14:15 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,11 +138,11 @@ int PhoneBook::search(void)
 	while (1)
 	{
 		print(GREEN, "Which contact would you like to inspect closer?\n", 2);
-		print(GREEN, "Type its number to see, or 'b'to go back:\n", 2);
+		print(GREEN, "Type its number to see, or 'B'to go back:\n", 2);
 		std::cout << T << GREEN << ">" << RESET;
 		std::getline(std::cin, input);
 		check_eof();
-		if (input == "b")
+		if (input == "B")
 			break ;
 		else if((in = test_valid(input, init)))
 		{
@@ -150,9 +150,9 @@ int PhoneBook::search(void)
 			std::cout<<YELLOW<<input<<std::endl<<RESET;
 			contacts[in - 1].display_contact();
 		}
-		else if (input == "exit")
+		else if (input == "EXIT")
 			leave();
-		else if (input == "add")
+		else if (input == "ADD")
 			return (1);
 		else
 		{
