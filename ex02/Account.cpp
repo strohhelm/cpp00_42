@@ -6,7 +6,7 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 18:46:49 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/11/16 16:16:19 by pstrohal         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:37:25 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int Account::_totalNbWithdrawals = 0;
 const std::string b = "\033[34m";
 const std::string w = "\033[0m";
 
-Account::Account(void)
-{
-	
-}
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//		CONSTRUCTORS, DESTRUCTOR
+//
+Account::Account(void) {}
+
 Account::Account(int initial_deposit)
 {
 	_accountIndex = _nbAccounts;
@@ -50,19 +51,21 @@ Account::~Account(void)
 }
 
 //*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
-
+//		public Account Class functions
+//
 int	Account::getNbAccounts( void )
 {
 	return(_nbAccounts);
 }
-//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+
+//--------------------------------------------------------------------------------------------//
 
 int	Account::getTotalAmount( void )
 {
 	return(_totalAmount);
 }
 
-//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//--------------------------------------------------------------------------------------------//
 
 int	Account::getNbDeposits( void )
 {
@@ -70,14 +73,14 @@ int	Account::getNbDeposits( void )
 	
 }
 
-//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//--------------------------------------------------------------------------------------------//
 
 int	Account::getNbWithdrawals( void )
 {
 	return(_totalNbWithdrawals);
 }
 
-//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//--------------------------------------------------------------------------------------------//
 
 void	Account::displayAccountsInfos( void )
 {
@@ -88,8 +91,69 @@ void	Account::displayAccountsInfos( void )
 				<<"withdrawals:"<<b<<getNbWithdrawals()	<<w<<std::endl;
 }
 
-//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//--------------------------------------------------------------------------------------------//
 
+
+void Account::displayStatus(void) const
+{
+	Account::_displayTimestamp();
+	std::cout	<<"index:"			<<b<<_accountIndex	<<w <<";"\
+				<<"amount:"			<<b<<_amount		<<w<<";" \
+				<<"deposits:"		<<b<<_nbDeposits	<<w<<";" \
+				<<"withdrawals:"	<<b<<_nbWithdrawals	<<w<<std::endl;
+}
+
+//--------------------------------------------------------------------------------------------//
+
+
+int		Account::checkAmount( void ) const
+{
+	return(_amount);
+}
+
+//--------------------------------------------------------------------------------------------//
+
+bool	Account::makeWithdrawal(int withdrawal)
+{
+	_displayTimestamp();
+	std::cout	<<"index:"		<<b<<_accountIndex		<<w<<";" \
+				<<"p_amount:"	<<b<<_amount			<<w<<";" \
+				<<"withdrawal:";
+	if (_amount > withdrawal)
+	{
+		_amount -= withdrawal;
+		_totalAmount -= withdrawal;
+		_nbWithdrawals++;
+		_totalNbWithdrawals++;
+		std::cout						<<b<< withdrawal	<<w<<";"\
+					<<"amount:"			<<b<<_amount		<<w<<";" \
+					<<"nb_withdrawals:"	<<b<<_nbWithdrawals	<<w\
+					<<std::endl;
+		return (1);
+	}
+	std::cout <<"refused" <<std::endl;
+	return (0);
+}
+
+//--------------------------------------------------------------------------------------------//
+
+void	Account::makeDeposit( int deposit )
+{
+	_displayTimestamp();
+	std::cout	<<"index:"		<<b<<_accountIndex	<<w<<";" \
+				<<"p_amount:"	<<b<<_amount		<<w<<";" \
+				<<"deposit:"	<<b<<deposit		<<w<<";";
+	_nbDeposits++;
+	_amount += deposit;
+	_totalAmount += deposit;
+	_totalNbDeposits++;
+	std::cout	<<"amount:"		<<b<<_amount		<<w<<";"\
+				<<"nb_deposits:"<<b<<_nbDeposits	<<w<<std::endl;
+	return ;
+}
+//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
+//		private Account Class functions
+//
 void	Account::_displayTimestamp(void)
 {
 	std::time_t	time;
@@ -107,62 +171,4 @@ void	Account::_displayTimestamp(void)
 				<<tm.tm_sec
 				<<"] ";
 }
-
-//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
-
-void Account::displayStatus(void) const
-{
-	Account::_displayTimestamp();
-	std::cout	<<"index:"			<<b<<_accountIndex	<<w <<";"\
-				<<"amount:"			<<b<<_amount			<<w<<";" \
-				<<"deposits:"		<<b<<_nbDeposits		<<w<<";" \
-				<<"withdrawals:"	<<b<<_nbWithdrawals	<<w<<std::endl;
-}
-
-//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
-
-int		Account::checkAmount( void ) const
-{
-	return(_amount);
-}
-
-//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
-
-bool	Account::makeWithdrawal(int withdrawal)
-{
-	_displayTimestamp();
-	std::cout	<<"index:"		<<b<<_accountIndex	<<w<<";" \
-				<<"p_amount:"	<<b<<_amount			<<w<<";" \
-				<<"withdrawal:";
-	if (_amount > withdrawal)
-	{
-		_amount -= withdrawal;
-		_totalAmount -= withdrawal;
-		_nbWithdrawals++;
-		_totalNbWithdrawals++;
-		std::cout						<<b<< withdrawal		<<w<<";"\
-					<<"amount:"			<<b<<_amount			<<w<<";" \
-					<<"nb_withdrawals:"	<<b<<_nbWithdrawals		<<w\
-					<<std::endl;
-		return (1);
-	}
-	std::cout <<"refused" <<std::endl;
-	return (0);
-}
-
-//*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*//
-
-void	Account::makeDeposit( int deposit )
-{
-	_displayTimestamp();
-	std::cout	<<"index:"		<<b<<_accountIndex	<<w<<";" \
-				<<"p_amount:"	<<b<<_amount			<<w<<";" \
-				<<"deposit:"	<<b<<deposit				<<w<<";";
-	_nbDeposits++;
-	_amount += deposit;
-	_totalAmount += deposit;
-	_totalNbDeposits++;
-	std::cout	<<"amount:"		<<b<<_amount		<<w<<";"\
-				<<"nb_deposits:"<<b<<_nbDeposits	<<w<<std::endl;
-	return ;
-}
+//--------------------------------------------------------------------------------------------//
