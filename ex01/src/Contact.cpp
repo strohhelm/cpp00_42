@@ -6,7 +6,7 @@
 /*   By: pstrohal <pstrohal@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 16:22:38 by pstrohal          #+#    #+#             */
-/*   Updated: 2024/11/17 14:39:44 by pstrohal         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:30:59 by pstrohal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	display_correctly(std::string content, int db)
 	if (len > 10)
 	{
 		for(int i = 0; i < 9; i++)
-			std::cout << WHITE << content[i] << RESET;
+			std::cout << content[i] << RESET;
 		std::cout <<".";
 	}
 	else
