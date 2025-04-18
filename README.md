@@ -13,6 +13,12 @@ The purpose of these c++ projects is to get introduced into OOP. We are allowed 
 - Headers must be able to be used independently from others.
 - Use of STL in the Module 08 and 09 only->no containers / Algorithm header
 
+## Usage:
+  ```
+  $> make
+  $> ./<executable>
+```
+
 ## 🔶 ex00 Megaphone
 ### Objective:  *write a program that behaves as follows:*
 ``` $>.\/megaphone \"shhhhh... I think the students are asleep..."
@@ -32,3 +38,21 @@ This was a very easy introduction to the c++ way of solving this problem. Using 
 - On program start-up, the phonebook is empty and the user is prompted to enter one of three commands.  
 - The program only accepts ADD, SEARCH and EXIT.Once a command has been correctly executed, the program waits for another one  
 - It stops when the user inputs EXIT.
+
+My output example:  
+![rendering](/img/start)
+
+### My thoughts:
+This was a very fun first time playing with c++. I had to look up basically everything that i wrote and it took way longer than intended since i wanted to make it fancy also.
+For example the output gets interrupted after each character written to the std output by making the thread sleep for some time. This way it feels more immersive and fun in my opinion.
+Also i handled signal interrupts and EOF in the input operations and made some fun exiting "animations".
+
+## 🔶 ex02 The Job Of Your Dreams
+### Ojective: Recreate the Accounts.cpp file that got "lost". 
+- The main funciton and .hpp file are left over.
+- The output must be exactly the same except for the timestamps and order of constructors / destructors.
+
+### My thoughts:
+- This was interesting because i had to read understand the provided code.
+- To recreate the functionality i had to see the funtions in the headerfile, how they are used in the main function and what output they produce in the provided file.
+- The output had to be perfect, so each character printed was to be considered otherwise it counted as a fail.
