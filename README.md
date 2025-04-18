@@ -13,11 +13,6 @@ The purpose of these c++ projects is to get introduced into OOP. We are allowed 
 - Headers must be able to be used independently from others.
 - Use of STL in the Module 08 and 09 only->no containers / Algorithm header
 
-## Usage:
-  ```
-  $> make
-  $> ./<executable>
-```
 
 ## 🔶 ex00 Megaphone
 ### Objective:  *write a program that behaves as follows:*
@@ -29,6 +24,13 @@ DAMNIT ! SORRY STUDENTS, I THOUGHT THIS THING WAS OFF. $>./megaphone
 $>
 ```
 
+### Usage:
+  ```
+  cd ex00
+  make
+  ./megaphone <arguments>
+```
+
 ### My thoughts:
 This was a very easy introduction to the c++ way of solving this problem. Using the cout function and for loops. (prior in my c programming i wasnt allowed them)
 
@@ -38,6 +40,13 @@ This was a very easy introduction to the c++ way of solving this problem. Using 
 - On program start-up, the phonebook is empty and the user is prompted to enter one of three commands.  
 - The program only accepts ADD, SEARCH and EXIT.Once a command has been correctly executed, the program waits for another one  
 - It stops when the user inputs EXIT.
+
+### Usage:
+  ```
+  cd ex01
+  make
+  ./phonebook
+```
 
 My output example:  
 ![rendering](/img/start)
